@@ -1,0 +1,42 @@
+<!-- translator_app/templates/translator_app/home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Language Translator</title>
+</head>
+<body>
+    <h1>Language Translator</h1>
+    <form id="translation-form">
+        <textarea name="text" rows="4" cols="50"></textarea>
+        <select name="target_language">
+            <option value="en">English</option>
+            <option value="es">Spanish</option>
+            <option value="fr">French</option>
+            <!-- Add more language options as needed -->
+        </select>
+        <button type="submit">Translate</button>
+    </form>
+    <div id="translation-result"></div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#translation-form').submit(function (e) {
+                e.preventDefault();
+                const formData = $(this).serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: '/translate_text/',
+                    data: formData,
+                    success: function (data) {
+                        $('#translation-result').text('Translation: ' + data.translation);
+                    },
+                    error: function () {
+                        $('#translation-result').text('Translation error.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

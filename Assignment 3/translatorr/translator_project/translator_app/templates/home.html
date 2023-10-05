@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+  <head>
+    <title>Translator</title>
+
+  </head>
+  <body>
+   <center><h2 style="color:black;margin-top:30px;font-family: 'Source Sans Pro', sans-serif;">TRANSLATOR</h2></center>
+    <form method="post">
+      {% csrf_token %}
+        <center><p>Choose Language</p></center>
+
+      <br>
+     <center> <select required name="fromlanguage">
+        <option value="hi">Hindi</option>
+        <option value="en">English</option>
+        <option value="te">Telugu</option>
+
+     </select></center>
+      <br>
+
+  <center><label for="django">Enter Text:</label>
+  <br/>
+  <textarea onChange="" id="translate" name="translate" placeholder="Enter your text here" rows="10" cols="70"></textarea>
+
+      <br><br>
+      <select required name="tolanguage">
+        <option value="hi">Hindi</option>
+        <option value="en">English</option>
+        <option value="te">Telugu</option>
+
+
+      </select>
+      <br>
+      <br>
+      <button id="btn" type="submit">Translate</button>
+      </center>
+
+    </form>
+
+  <br>
+
+    <div>
+     {% if translation %}
+     <h4>Translated:</h4><br>
+     {{translation}}
+     {% endif%}
+
+ </div>
+
+
+
+  </body>
+
+</html>
